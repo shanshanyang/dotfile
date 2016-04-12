@@ -54,12 +54,7 @@ setup_npmrc () {
   then
     info 'setup npmrc'
 
-    user ' - What is your npm author name?'
-    read -e npm_authorname
-    user ' - What is your npm author email?'
-    read -e npm_authoremail
-
-    sed -e "s/AUTHORNAME/$npm_authorname/g" -e "s/AUTHOREMAIL/$npm_authoremail/g" -e "s/AUTHTOKEN/${NPM_TOKEN}/g" npm/npmrc.symlink.example > npm/npmrc.symlink
+    sed -e "s/AUTHORNAME/${NPM_NAME}/g" -e "s/AUTHOREMAIL/${NPM_EMAIL}/g" -e "s/AUTHTOKEN/${NPM_TOKEN}/g" npm/npmrc.symlink.example > npm/npmrc.symlink
 
     success 'npmrc'
   fi
