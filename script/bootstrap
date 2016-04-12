@@ -49,6 +49,23 @@ setup_gitconfig () {
   fi
 }
 
+setup_npmrc () {
+  if ! [ -f npm/npmrc.symlink ]
+  then
+    info 'setup npmrc'
+
+    user ' - What is your npm author name?'
+    read -e npm_authorname
+    user ' - What is your npm author email?'
+    read -e npm_authoremail
+
+    sed -e "s/AUTHORNAME/$npm_authorname/g" -e "s/AUTHOREMAIL/$npm_authoremail/g" -e "s/AUTHTOKEN/${NPM_TOKEN}/g" npm/npmrc.symlink.example > npm/npmrc.symlink
+
+    success 'npmrc'
+  fi
+}
+
+
 
 link_file () {
   local src=$1 dst=$2
@@ -138,6 +155,7 @@ install_dotfiles () {
 }
 
 setup_gitconfig
+setup_npmrc
 install_dotfiles
 
 # If we're on a Mac, let's install and setup homebrew.
