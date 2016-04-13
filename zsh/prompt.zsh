@@ -309,10 +309,10 @@ function git_time_since_commit() {
 
 export PROMPT='
 %{$fg[blue]%}🍉 %{$reset_color%} in $(directory_name)$(git_dirty)
-$ $(git_remote_status) '
+$ $(git_prompt_status) '
 
 set_prompt () {
-  export RPROMPT="$(git_prompt_remote)%{$fg_bold[cyan]%}$(git_time_since_commit)%{$reset_color%}"
+  export RPROMPT="$(git_remote_status)$(git_prompt_remote)%{$fg_bold[cyan]%}$(git_time_since_commit)%{$reset_color%}"
 }
 
 precmd() {

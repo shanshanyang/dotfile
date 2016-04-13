@@ -12,10 +12,6 @@ fi
 alias gs='git status -sb'
 alias ga='git add -A && gs'
 alias gac='git add -A && git commit -m'
-# git-commit-reuse commit message + [commit sha]
-alias gcc='git commit -C'
-# git-commit-a Commit all changes
-alias gca='git commit -a'
 # git-checkout
 alias gch='git checkout'
 # git-commit-amend Amend the currently staged files to the latest commit
