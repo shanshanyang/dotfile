@@ -15,9 +15,9 @@ git_prompt_short_sha() {
 
   if [[ $(unpushed) == "" ]]
   then
-    echo "➤ %{$fg_bold[yellow]%}$SHA%{$reset_color%}"
-  else
     echo "➤ %{$fg_bold[green]%}$SHA%{$reset_color%}"
+  else
+    echo "➤ %{$fg_bold[magenta]%}$SHA%{$reset_color%}"
   fi
 }
 
