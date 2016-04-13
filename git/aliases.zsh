@@ -57,11 +57,13 @@ alias gundo='git reset --soft HEAD^'
 # git root
 alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
 
+
 # Show the diff between the latest commit and the current state
 alias d=!"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
 # `git di $number` shows the diff between the state `$number` revisions ago and the current state
 alias di=!"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+
 
 # Switch to a branch, creating it if necessary
 alias go="!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
