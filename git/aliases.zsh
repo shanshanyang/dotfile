@@ -6,6 +6,10 @@ then
   alias git=$hub_path
 fi
 
+# Show verbose output about tags, branches or remotes
+alias branches='git branch -a'
+alias remotes='git remote -v'
+
 # Daily use
 
 # View the current working tree status using the short format
@@ -27,6 +31,11 @@ alias gph='git push origin HEAD'
 # git-pull
 alias gl='git pull'
 alias glp='git pull --prune'
+
+# Git branches
+
+# git-remote-prune Clean up remote deleted branches
+alias grp='git remote prune origin && branches'
 
 
 # Git Tags
@@ -63,14 +72,8 @@ alias d=!"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-w
 # `git di $number` shows the diff between the state `$number` revisions ago and the current state
 alias di=!"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
-
 # Switch to a branch, creating it if necessary
 alias go="!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
-
-# Show verbose output about tags, branches or remotes
-alias branches='git branch -a'
-alias remotes='git remote -v'
-
 
 # Credit an author on the latest commit
 alias credit="!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
@@ -92,10 +95,10 @@ alias fm="!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgr
 
 # Remove branches that have already been merged with master
 # a.k.a. ‘delete merged’
-alias dm="!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+#alias dm="!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
 # List contributors with number of commits
-alias contributors=shortlog --summary --numbered
+alias contributors='git shortlog --summary --numbered'
 
 # Merge GitHub pull request on top of the `master` branch
 alias mpr="!f() { \
