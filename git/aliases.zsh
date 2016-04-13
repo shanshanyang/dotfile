@@ -36,7 +36,7 @@ alias glp='git pull --prune'
 
 # git-remote-prune Clean up remote deleted branches
 alias grp='git remote prune origin && branches'
-
+alias gru='git remote set-url origin'
 
 # Git Tags
 
