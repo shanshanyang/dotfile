@@ -17,9 +17,9 @@ alias gch='git checkout'
 # git-commit-amend Amend the currently staged files to the latest commit
 alias gcm='git commit --amend -C HEAD'
 # git-log-short View abbreviated SHA, description, and history graph of the latest 20 commits
-alias gls='git log --pretty=oneline -n 20 --graph --abbrev-commit'
+alias glos='git log --pretty=oneline -n 20 --graph --abbrev-commit'
 # git-log-long
-alias gll="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias glol="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 # git-remove-cached
 alias gmc='git rm --cached'
 # git-push-head
