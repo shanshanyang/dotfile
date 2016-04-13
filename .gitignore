@@ -10,3 +10,4 @@ atom.symlink/themes
 git/gitconfig.symlink
 
 npm/npmrc.symlink
+ssh/config.symlink

@@ -170,9 +170,9 @@ git_prompt_behind() {
 # Outputs if current branch exists on remote or not
 git_prompt_remote() {
   if [[ -n "$(command git show-ref origin/$(git_current_branch) 2> /dev/null)" ]]; then
-    echo "$ZSH_THEME_GIT_PROMPT_REMOTE_EXISTS"
+    echo "$ZSH_THEME_GIT_PROMPT_REMOTE_EXISTS "
   else
-    echo "$ZSH_THEME_GIT_PROMPT_REMOTE_MISSING"
+    echo "$ZSH_THEME_GIT_PROMPT_REMOTE_MISSING "
   fi
 }
 
@@ -226,7 +226,7 @@ unpushed () {
 }
 
 directory_name() {
-  echo "%{$fg_bold[blue]%}%~%\/%{$reset_color%}"
+  echo "%{$fg_bold[blue]%}%~%{$reset_color%}"
 }
 
 user_host() {
@@ -241,18 +241,18 @@ user_host() {
 }
 
 # GIT PROMPT colors
-ZSH_THEME_GIT_PROMPT_REMOTE_EXISTS="☁︎"
-ZSH_THEME_GIT_PROMPT_REMOTE_MISSING="🌩"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}⚡%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[red]%}!%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✓%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_REMOTE_EXISTS="⭐"
+ZSH_THEME_GIT_PROMPT_REMOTE_MISSING=""
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}⚡ %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[red]%}! %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✓ %{$reset_color%}"
 
-ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} ✚"
-ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ✹"
-ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖"
-ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} ➜"
-ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ═"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
+ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} ✚ "
+ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ✹ "
+ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖ "
+ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} ➜ "
+ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ═ "
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭ "
 
 # Colors vary depending on time lapsed.
 ZSH_THEME_GIT_TIME_SINCE_COMMIT_SHORT="%{$fg[green]%}"
@@ -309,7 +309,7 @@ function git_time_since_commit() {
 
 export PROMPT='
 %{$fg[blue]%}🍉 %{$reset_color%} in $(directory_name)$(git_dirty)
-$ $(git_prompt_status) '
+$ '
 
 set_prompt () {
   export RPROMPT="$(git_remote_status)$(git_prompt_remote)%{$fg_bold[cyan]%}$(git_time_since_commit)%{$reset_color%}"
