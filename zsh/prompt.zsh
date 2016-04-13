@@ -20,6 +20,14 @@ git_prompt_long_sha() {
   SHA=$(command git rev-parse HEAD 2> /dev/null) && echo "$ZSH_THEME_GIT_PROMPT_SHA_BEFORE$SHA$ZSH_THEME_GIT_PROMPT_SHA_AFTER"
 }
 
+git_prompt_remote() {
+  if [[ -n "$(command git show-ref origin/$(git_current_branch) 2> /dev/null)" ]]; then
+    echo "$ZSH_THEME_GIT_PROMPT_REMOTE_EXISTS"
+  else
+    echo "$ZSH_THEME_GIT_PROMPT_REMOTE_MISSING"
+  fi
+}
+
 git_dirty() {
   if $(! $git status -s &> /dev/null)
   then
@@ -27,9 +35,9 @@ git_dirty() {
   else
     if [[ $($git status --porcelain) == "" ]]
     then
-      echo " $(git_prompt_short_sha) on %{$fg_bold[green]%}$(git_prompt_info)%{$reset_color%}"
+      echo " $(git_prompt_short_sha) on %{$fg_bold[green]%}$(git_prompt_info)$ZSH_THEME_GIT_PROMPT_CLEAN%{$reset_color%}"
     else
-      echo " $(git_prompt_short_sha) on %{$fg_bold[red]%}$(git_prompt_info)%{$reset_color%}"
+      echo " $(git_prompt_short_sha) on %{$fg_bold[red]%}$(git_prompt_info)$ZSH_THEME_GIT_PROMPT_DIRTY%{$reset_color%}"
     fi
   fi
 }
@@ -139,8 +147,8 @@ function git_time_since_commit() {
 
 
 export PROMPT='
-%{$fg[blue]%}🍉 %{$reset_color%} in $(directory_name)$(git_dirty)
-$(need_push)$ '
+%{$fg[blue]%}🍉 %{$reset_color%} in $(directory_name)$(git_dirty)$(need_push)
+$ '
 
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}$(git_time_since_commit)%{$reset_color%}"
