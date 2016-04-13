@@ -23,12 +23,27 @@ brew 'unrar'
 brew 'wget'
 brew 'youtube-dl'
 
-cask 'iterm2'
-cask 'atom'
+# Daily
+cask 'rescuetime'
 cask 'evernote'
 cask 'dropbox'
-cask 'firefox'
-cask 'google-chrome'
+cask 'gyazo'
+cask 'flux'
+
+# Development
+cask 'iterm2'
+cask 'atom'
+cask 'imagealpha'
+cask 'imageoptim'
+
+# browsers
+cask 'google-chrome-canary'
+cask 'firefoxnightly'
+cask 'webkit-nightly'
+cask 'chromium'
+cask 'torbrowser'
+
+
 cask 'handbrake'
 cask 'slack'
 cask 'tunnelbear'
