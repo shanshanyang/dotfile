@@ -2,13 +2,14 @@
 export ZSH=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=~/Code
+export PROJECTS=~/Projects
 
-# use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
-if [[ -a ~/.localrc ]]
+# Stash your environment variables in ~/.localrc. This means they'll stay out
+# of your main dotfiles repository (which may be public, like this one), but
+# you'll have access to them in your scripts.
+if [[ -a ~/.bash_profile ]]
 then
-  source ~/.localrc
+  source ~/.bash_profile
 fi
 
 # all of our zsh files
@@ -30,6 +31,7 @@ done
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
 compinit
+
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}

@@ -3,18 +3,18 @@
 # bootstrap installs things.
 
 cd "$(dirname "$0")/.."
-DOTFILES_ROOT=$(pwd)
+DOTFILES_ROOT=$(pwd -P)
 
 set -e
 
 echo ''
 
 info () {
-  printf "  [ \033[00;34m..\033[0m ] $1"
+  printf "\r  [ \033[00;34m..\033[0m ] $1\n"
 }
 
 user () {
-  printf "\r  [ \033[0;33m?\033[0m ] $1 "
+  printf "\r  [ \033[0;33m??\033[0m ] $1\n"
 }
 
 success () {
@@ -48,6 +48,18 @@ setup_gitconfig () {
     success 'gitconfig'
   fi
 }
+
+setup_npmrc () {
+  if ! [ -f npm/npmrc.symlink ]
+  then
+    info 'setup npmrc'
+
+    sed -e "s/AUTHORNAME/${NPM_NAME}/g" -e "s/AUTHOREMAIL/${NPM_EMAIL}/g" -e "s/AUTHTOKEN/${NPM_TOKEN}/g" npm/npmrc.symlink.example > npm/npmrc.symlink
+
+    success 'npmrc'
+  fi
+}
+
 
 
 link_file () {
@@ -130,7 +142,7 @@ install_dotfiles () {
 
   local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink')
+  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
   do
     dst="$HOME/.$(basename "${src%.*}")"
     link_file "$src" "$dst"
@@ -138,6 +150,7 @@ install_dotfiles () {
 }
 
 setup_gitconfig
+setup_npmrc
 install_dotfiles
 
 # If we're on a Mac, let's install and setup homebrew.

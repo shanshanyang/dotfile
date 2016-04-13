@@ -1,0 +1,8 @@
+init-author-name = AUTHORNAME
+init-author-email = AUTHOREMAIL
+init-license = MIT
+save-exact = true
+username = AUTHORNAME
+email = AUTHOREMAIL
+//registry.npmjs.org/:_authToken=AUTHTOKEN
+scope = AUTHORNAME

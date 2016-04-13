@@ -14,18 +14,39 @@
         wtf     = !$ZSH/bin/git-wtf
         rank-contributors = !$ZSH/bin/git-rank-contributors
         count   = !git shortlog -sn
+# [commit]
+#        template = ~/.gitmessage.txt
 [color]
         diff = auto
         status = auto
         branch = auto
         ui = true
 [core]
-        excludesfile = ~/.gitignore
-        editor = vim
+        editor = atom
+        # Use custom `.gitignore` and `.gitattributes`
+      	excludesfile = ~/.gitignore
+      	attributesfile = ~/.gitattributes
+
+      	# Treat spaces before tabs and all kinds of trailing whitespace as an error
+      	# [default] trailing-space: looks for spaces at the end of a line
+      	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+      	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+      	# Make `git rebase` safer on OS X
+      	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+      	trustctime = false
+
+      	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
+      	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+      	precomposeunicode = false
 [apply]
         whitespace = nowarn
 [mergetool]
         keepBackup = false
+[merge]
+
+	# Include summaries of merged commits in newly created merge commit messages
+	log = true
 [difftool]
         prompt = false
 [help]
@@ -34,5 +55,5 @@
         # See `git help config` (search for push.default)
         # for more information on different options of the below setting.
         #
-        # Setting to git 2.0 default to surpress warning message
+        # Setting to git 2.0 default to suppress warning message
         default = simple
