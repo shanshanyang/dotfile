@@ -11,7 +11,14 @@ fi
 
 git_prompt_short_sha() {
   local SHA
-  SHA=$(command git rev-parse --short HEAD 2> /dev/null) && echo "$ZSH_THEME_GIT_PROMPT_SHA_BEFORE$SHA$ZSH_THEME_GIT_PROMPT_SHA_AFTER"
+  SHA=$(command git rev-parse --short HEAD 2> /dev/null)
+
+  if [[ $(unpushed) == "" ]]
+  then
+    echo "➤ %{$fg_bold[yellow]%}$SHA%{$reset_color%}"
+  else
+    echo "➤ %{$fg_bold[green]%}$SHA%{$reset_color%}"
+  fi
 }
 
 # Formats prompt string for current git commit long SHA
@@ -20,11 +27,22 @@ git_prompt_long_sha() {
   SHA=$(command git rev-parse HEAD 2> /dev/null) && echo "$ZSH_THEME_GIT_PROMPT_SHA_BEFORE$SHA$ZSH_THEME_GIT_PROMPT_SHA_AFTER"
 }
 
+git_current_branch() {
+  local ref
+  ref=$(command git symbolic-ref --quiet HEAD 2> /dev/null)
+  local ret=$?
+  if [[ $ret != 0 ]]; then
+    [[ $ret == 128 ]] && return  # no git repo.
+    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
+  fi
+  echo ${ref#refs/heads/}
+}
+
 git_prompt_remote() {
   if [[ -n "$(command git show-ref origin/$(git_current_branch) 2> /dev/null)" ]]; then
-    echo "$ZSH_THEME_GIT_PROMPT_REMOTE_EXISTS"
+    echo "☁︎ $ZSH_THEME_GIT_PROMPT_REMOTE_EXISTS"
   else
-    echo "$ZSH_THEME_GIT_PROMPT_REMOTE_MISSING"
+    echo "🌩 $ZSH_THEME_GIT_PROMPT_REMOTE_MISSING"
   fi
 }
 
@@ -35,9 +53,9 @@ git_dirty() {
   else
     if [[ $($git status --porcelain) == "" ]]
     then
-      echo " $(git_prompt_short_sha) on %{$fg_bold[green]%}$(git_prompt_info)$ZSH_THEME_GIT_PROMPT_CLEAN%{$reset_color%}"
+      echo " $(git_prompt_short_sha) on %{$fg_bold[green]%}$(git_prompt_info)$ZSH_THEME_GIT_PROMPT_CLEAN%{$reset_color%} $(git_prompt_remote)"
     else
-      echo " $(git_prompt_short_sha) on %{$fg_bold[red]%}$(git_prompt_info)$ZSH_THEME_GIT_PROMPT_DIRTY%{$reset_color%}"
+      echo " $(git_prompt_short_sha) on %{$fg_bold[red]%}$(git_prompt_info)$ZSH_THEME_GIT_PROMPT_DIRTY%{$reset_color%} $(git_prompt_remote)"
     fi
   fi
 }
@@ -50,15 +68,6 @@ git_prompt_info () {
 
 unpushed () {
   $git cherry -v @{upstream} 2>/dev/null
-}
-
-need_push () {
-  if [[ $(unpushed) == "" ]]
-  then
-    echo " "
-  else
-    echo " with %{$fg_bold[magenta]%}unpushed%{$reset_color%} "
-  fi
 }
 
 directory_name() {
@@ -147,7 +156,7 @@ function git_time_since_commit() {
 
 
 export PROMPT='
-%{$fg[blue]%}🍉 %{$reset_color%} in $(directory_name)$(git_dirty)$(need_push)
+%{$fg[blue]%}🍉 %{$reset_color%} in $(directory_name)$(git_dirty)
 $ '
 
 set_prompt () {
