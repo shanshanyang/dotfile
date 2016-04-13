@@ -14,10 +14,6 @@ alias mv='mv -v'
 alias rm='rm -i -v'
 alias cp='cp -v'
 
-alias cask='brew cask' # i <3 u cask
-alias where=which # sometimes i forget
-alias brwe=brew  #typos
-
 alias hosts='sudo $EDITOR /etc/hosts'   # yes I occasionally 127.0.0.1 twitter.com ;)
 
 alias ag='ag -W 200 -f --hidden'
@@ -51,15 +47,6 @@ function clone() {
     bower install &
     npm install
 }
-alias push="git push"
-
-# Undo a `git push`
-alias undopush="git push -f origin HEAD^:master"
-
-# git root
-alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
-alias master="git checkout master"
-
 # Networking. IP address, dig, DNS
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 # alias dig="dig +nocmd any +multiline +noall +answer"
