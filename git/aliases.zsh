@@ -6,34 +6,56 @@ then
   alias git=$hub_path
 fi
 
-# The rest of my fun git aliases
-alias g="git"
-alias gl='git pull --prune'
-alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-alias gpush='git push origin HEAD'
-alias gpush-undo='git push -f origin HEAD^:master'
-alias gd='git diff'
-alias gc='git commit'
-alias gca='git commit -a'
-alias gco='git checkout'
-alias gcb='git copy-branch-name'
-alias gb='git branch'
-
-alias gundo='git reset --soft HEAD^'
-alias gamend='git commit --amend -C HEAD'
-
-# git root
-alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
-alias master="git checkout master"
-
-# View abbreviated SHA, description, and history graph of the latest 20 commits
-alias l='git log --pretty=oneline -n 20 --graph --abbrev-commit'
+# Daily use
 
 # View the current working tree status using the short format
 alias gs='git status -sb'
-alias gac='git add -A && git commit -m'
 alias ga='git add -A && gs'
-alias gr='git rm --cached'
+alias gac='git add -A && git commit -m'
+# git-commit-reuse commit message + [commit sha]
+alias gcc='git commit -C'
+# git-commit-a Commit all changes
+alias gca='git commit -a'
+# git-checkout
+alias gch='git checkout'
+# git-commit-amend Amend the currently staged files to the latest commit
+alias gcm='git commit --amend -C HEAD'
+# git-log-short View abbreviated SHA, description, and history graph of the latest 20 commits
+alias gls='git log --pretty=oneline -n 20 --graph --abbrev-commit'
+# git-log-long
+alias gll="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+# git-remove-cached
+alias gmc='git rm --cached'
+# git-push-head
+alias gph='git push origin HEAD'
+# git-pull
+alias gl='git pull'
+alias glp='git pull --prune'
+
+
+# Git Tags
+
+# git-tag-list Tags
+alias gtl='git tag -l'
+# git-push-tag
+alias gpt='git push --tags origin HEAD'
+
+# Submodules
+
+# git-clone-recursive Clone a repository including all submodules
+alias gcr='git clone --recursive'
+# Pull in remote changes for the current repository and all its submodules
+alias gp=!"git pull; git submodule foreach git pull origin master"
+
+# The rest of my fun git aliases
+alias gpush-undo='git push -f origin HEAD^:master'
+alias gd='git diff'
+alias gcb='git copy-branch-name'
+alias gb='git branch'
+alias gundo='git reset --soft HEAD^'
+
+# git root
+alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup || pwd`'
 
 # Show the diff between the latest commit and the current state
 alias d=!"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
@@ -41,25 +63,13 @@ alias d=!"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-w
 # `git di $number` shows the diff between the state `$number` revisions ago and the current state
 alias di=!"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
-# Pull in remote changes for the current repository and all its submodules
-alias p=!"git pull; git submodule foreach git pull origin master"
-
-# Clone a repository including all submodules
-alias c=clone --recursive
-
-# Commit all changes
-alias ca=!git add -A && git commit -av
-
 # Switch to a branch, creating it if necessary
 alias go="!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
 # Show verbose output about tags, branches or remotes
-alias tags=tag -l
-alias branches=branch -a
-alias remotes=remote -v
+alias branches='git branch -a'
+alias remotes='git remote -v'
 
-# Amend the currently staged files to the latest commit
-alias amend=commit --amend --reuse-message=HEAD
 
 # Credit an author on the latest commit
 alias credit="!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"

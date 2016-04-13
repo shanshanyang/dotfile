@@ -247,12 +247,12 @@ ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}⚡ %{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[red]%}! %{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}✓ %{$reset_color%}"
 
-ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} ✚ "
-ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ✹ "
-ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖ "
-ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} ➜ "
-ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ═ "
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭ "
+ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} ✚"
+ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ✹"
+ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖"
+ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} ➜"
+ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ═"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
 
 # Colors vary depending on time lapsed.
 ZSH_THEME_GIT_TIME_SINCE_COMMIT_SHORT="%{$fg[green]%}"
@@ -309,7 +309,7 @@ function git_time_since_commit() {
 
 export PROMPT='
 %{$fg[blue]%}🍉 %{$reset_color%} in $(directory_name)$(git_dirty)
-$ '
+$ $(git_remote_status) '
 
 set_prompt () {
   export RPROMPT="$(git_remote_status)$(git_prompt_remote)%{$fg_bold[cyan]%}$(git_time_since_commit)%{$reset_color%}"
