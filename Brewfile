@@ -27,7 +27,7 @@ brew 'youtube-dl'
 cask 'rescuetime'
 cask 'evernote'
 cask 'dropbox'
-cask 'gyazo'
+# cask 'gyazo'
 cask 'flux'
 
 # Development
@@ -37,11 +37,11 @@ cask 'imagealpha'
 cask 'imageoptim'
 
 # browsers
-cask 'google-chrome-canary'
-cask 'firefoxnightly'
-cask 'webkit-nightly'
+# cask 'google-chrome-canary'
+# cask 'firefoxnightly'
+# cask 'webkit-nightly'
 cask 'chromium'
-cask 'torbrowser'
+# cask 'torbrowser'
 
 
 cask 'handbrake'
