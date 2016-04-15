@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# cdesktop
+#
+# `cdesktop` removes everything on desktop
+
+echo "› Clean Desktop"
+rm -rf ~/Desktop/*

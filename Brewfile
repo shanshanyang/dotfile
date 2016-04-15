@@ -33,6 +33,7 @@ cask 'flux'
 # Development
 cask 'iterm2'
 cask 'atom'
+# cask 'visual-studio-code'
 cask 'imagealpha'
 cask 'imageoptim'
 

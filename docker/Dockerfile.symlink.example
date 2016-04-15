@@ -1,0 +1,6 @@
+# docker images
+# docker tag 844814bd216f shanshanyang/docker-whale:latest
+# docker login --username=shanshanyang --email=shanshanyang.ny@gmail.com
+# docker push shanshanyang/docker-whale
+# docker rmi -f 844814bd216f
+# docker run shanshanyang/docker-whale
