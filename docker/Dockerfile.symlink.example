@@ -4,3 +4,20 @@
 # docker push shanshanyang/docker-whale
 # docker rmi -f 844814bd216f
 # docker run shanshanyang/docker-whale
+# docker build -t web .
+# docker-compose up
+# docker-compose up --build
+
+## Get IP addresses of Docker host on MAC: 71.172.162.182
+# docker-machine ip [MACHINE_VM]
+
+## Docker Machine: ~/.docker/machine/machines/default
+# docker-machine ls
+# docker-machine rm <machine-name>
+# docker-machine create -d virtualbox --virtualbox-import-boot2docker-vm boot2docker-vm docker-vm
+## Docker Container
+# docker ps
+## Access container ports
+# docker run -d -P --name web nginx
+
+## Docker Engine, Docker Compose
