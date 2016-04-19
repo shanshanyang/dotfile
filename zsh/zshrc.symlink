@@ -32,6 +32,9 @@ done
 autoload -U compinit
 compinit
 
+#Docker
+eval "$(docker-machine env default)"
+
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}

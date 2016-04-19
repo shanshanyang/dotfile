@@ -15,9 +15,32 @@
 # docker-machine ls
 # docker-machine rm <machine-name>
 # docker-machine create -d virtualbox --virtualbox-import-boot2docker-vm boot2docker-vm docker-vm
-## Docker Container
+
+## Mac docker installation steps
+## Display Running Docker Container
 # docker ps
 ## Access container ports
 # docker run -d -P --name web nginx
+## web container’s port 80 is mapped to port 32769 on your Docker host
+# docker port web
+## set DOCKER_HOST address to localhost address
+# docker-machine ip default
+
+## stop and remove running docker container
+# docker stop <web>
+# docker rm <web>
+
+
+## Mount a volume on the container
+# docker run -d -P -v <$HOME/AWS>:/usr/share/nginx/html --name mysite nginx
 
 ## Docker Engine, Docker Compose
+
+
+## Delete Docker toolbox
+## Remove docker machines from Directory ~/.docker/machine/machines
+# docker-machine rm <dev>
+
+## Remove docker, docker-compose, docker-machine command from /usr/local/bin
+# rm /usr/local/bin/docker
+# rm -rf ~/.docker
