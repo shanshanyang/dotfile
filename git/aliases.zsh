@@ -47,10 +47,13 @@ alias gpt='git push --tags origin HEAD'
 
 # Submodules
 
+# add submodules
+# git submodule add git@github.com:url_to/awesome_submodule.git path_to_awesome_submodule
+
+# `g-update` will update submodules as well
+alias g-update='!git pull && git submodule update --init --recursive'
 # git-clone-recursive Clone a repository including all submodules
 alias gcr='git clone --recursive'
-# Pull in remote changes for the current repository and all its submodules
-alias gp=!"git pull; git submodule foreach git pull origin master"
 
 # The rest of my fun git aliases
 alias gl='git pull --prune'
